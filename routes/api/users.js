@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 const { body, validationResult } = require('express-validator');
 const User = require('../../models/User');
 
@@ -26,7 +28,7 @@ async (req, res) => {
     let user = await User.findOne({ email });
 
     if(user) {
-    res.status(400).json({ errors: [{ msg: 'User already exists'}]});
+    return res.status(400).json({ errors: [{ msg: 'User already exists'}]});
     }
 
     user = new User({
@@ -42,7 +44,21 @@ async (req, res) => {
 
     await user.save();
 
-    res.send('User Registered')
+    const payload = {
+        user: {
+            id: user.id
+        }
+    }
+
+    jwt.sign(
+        payload,
+        config.get('jwtSecret'),
+        { expiresIn: '5 days' },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
 
     }catch (err) {
      console.error(err.message);

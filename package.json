@@ -1,0 +1,29 @@
+{
+  "name": "salesxpress",
+  "version": "1.0.0",
+  "description": "salesXpress sales portal application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dcoxmen/salesXpress.git"
+  },
+  "author": "D.Cox",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dcoxmen/salesXpress/issues"
+  },
+  "homepage": "https://github.com/Dcoxmen/salesXpress#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.6",
+    "express": "^4.17.1",
+    "express-validator": "^6.10.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.1",
+    "request": "^2.88.2"
+  }
+}

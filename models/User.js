@@ -4,7 +4,7 @@ const UserSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
-    },
+      },
     email: {
         type: String,
         required: true,
@@ -15,10 +15,13 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     image: {
+        data: Buffer,
         type: String
     },
-    date: Date, 
+    date: {
+    type: Date, 
     default: Date.now
+    }
 
 })
 

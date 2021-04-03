@@ -9,7 +9,7 @@ const ProfileSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  jobtitle: {
+  market: {
     type: String
   },
   location: {
@@ -34,34 +34,25 @@ const ProfileSchema = new mongoose.Schema({
         type: String,
         required: true
       },
-      level: {
+      type: {
         type: String,
         required: true
       },
       reportsto: {
-        type: String
+        type: String,
+        required: true
       },
       basesalary: {
-        type: Number,
-        required: true
+        type: Number
       },
       salesincentive: {
         type: Number
       },
       ontargetearn: {
         type: Number
-      }
-    }
-  ],
-  comptype: [
-    {
-      model: {
-        type: String,
-        required: true
       },
       revenue: {
-        type: Number,
-        required: true
+        type: Number
       },
       avgcontract: {
         type: Number
@@ -75,22 +66,51 @@ const ProfileSchema = new mongoose.Schema({
       tierlevel: {
         type: String
       }
+
     }
   ],
-  social: {
-    youtube: {
+  metrics: [
+    {
+      model: {
+        type: String,
+        required: true
+      },
+      revenue: {
+        type: Number,
+        required: true
+      },
+      margin: {
+        type: Number,
+        required: true
+      },
+      cost: {
+        type: Number
+      },
+      average: {
+        type: Number
+      },
+      from: {
+        type: Date
+      },
+      to: {
+        type: Date
+      }
+    }
+  ],
+  local: {
+    district: {
       type: String
     },
-    twitter: {
+    districtmgr: {
       type: String
     },
-    facebook: {
+    region: {
       type: String
     },
-    linkedin: {
+    regionmgr: {
       type: String
     },
-    instagram: {
+    contact: {
       type: String
     }
   },

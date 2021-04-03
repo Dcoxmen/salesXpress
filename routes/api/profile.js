@@ -47,11 +47,11 @@ async (req, res) => {
       location,
       salesgoal,
       myaccounts,
-      youtube,
-      instagram,
-      linkedin,
-      facebook,
-      twitter,
+      district,
+      districtmgr,
+      region,
+      regionmgr,
+      contact,
       admin
 
   } = req.body;
@@ -68,13 +68,13 @@ async (req, res) => {
      profileFields.myaccounts = myaccounts.split(',').map(myaccounts => myaccounts.trim());
  }
 
- profileFields.social = {};
+ profileFields.local = {};
 
- if(youtube) profileFields.social.youtube = youtube;
- if(twitter) profileFields.social.twiter = twitter;
- if(facebook) profileFields.social.facebook = facebook;
- if(linkedin) profileFields.social.linkedin = linkedin;
- if(instagram) profileFields.social.instagram = instagram;
+ if(district) profileFields.local.district = district;
+ if(districtmgr) profileFields.local.districtmgr = districtmgr;
+ if(region) profileFields.local.region = region;
+ if(regionmgr) profileFields.local.regionmgr = regionmgr;
+ if(contact) profileFields.local.contact = contact;
 
 try{
     let profile = await Profile.findOne({ user: req.user.id });
@@ -148,6 +148,165 @@ router.delete('/', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
+
+// @route    PUT api/profile/complan
+// @desc     Add profile compensation plan
+// @access   Private
+
+router.put('/complan', [auth, [
+  check('title', 'Title is required').not().isEmpty(),
+  check('type', 'Type is required').not().isEmpty(),
+  check('reportsto', 'Reports to manager is required').not().isEmpty()
+]], async (req, res) => {
+  const errors = validationResult(req)
+
+  if(!errors.isEmpty()){
+    return res.status(400).json({ errors: errors.array() });
+
+  }
+
+  const {
+    title,
+    type,
+    reportsto,
+    basesalary,
+    salesincentive,
+    ontargetearn,
+    revenue,
+    avgcontract,
+    compensationvar,
+    lifecycle,
+    tierlevel
+  } = req.body;
+
+  const newComp = {
+    title,
+    type,
+    reportsto,
+    basesalary,
+    salesincentive,
+    ontargetearn,
+    revenue,
+    avgcontract,
+    compensationvar,
+    lifecycle,
+    tierlevel
+  }
+
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    profile.complan.unshift(newComp);
+    await profile.save()
+    res.json(profile);
+  } catch(err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+
+})
+
+// @route    DELETE api/profile/complan/:comp_id
+// @desc     Delete profile compensation plan
+// @access   Private
+
+router.delete('/complan/:comp_id', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    //Get remove index
+    const removeIndex = profile.complan
+    .map(item => item.id)
+    .indexOf(req.params.comp_id);
+
+    profile.complan.splice(removeIndex, 1);
+
+    await profile.save();
+
+    res.json(profile);
+
+  }catch (err){
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+})
+
+//================
+
+// @route    PUT api/profile/metrics
+// @desc     Add profile metric numbers
+// @access   Private
+
+router.put('/metrics', [auth, [
+  check('model', 'Model name is required').not().isEmpty(),
+  check('revenue', 'Revenue amount is required').not().isEmpty(),
+  check('margin', 'Margin amount is required').not().isEmpty()
+]], async (req, res) => {
+  const errors = validationResult(req)
+
+  if(!errors.isEmpty()){
+    return res.status(400).json({ errors: errors.array() });
+
+  }
+
+  const {
+    model,
+    revenue,
+    margin,
+    cost,
+    average,
+    from,
+    to
+  } = req.body;
+
+  const newMetric = {
+    model,
+    revenue,
+    margin,
+    cost,
+    average,
+    from,
+    to
+  }
+
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    profile.metrics.unshift(newMetric);
+    await profile.save()
+    res.json(profile);
+  } catch(err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+
+})
+
+// @route    DELETE api/profile/metrics/:metric_id
+// @desc     Delete profile metrics plan
+// @access   Private
+
+router.delete('/metrics/:metric_id', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    //Get remove index
+    const removeIndex = profile.metrics
+    .map(item => item.id)
+    .indexOf(req.params.metric_id);
+
+    profile.metrics.splice(removeIndex, 1);
+
+    await profile.save();
+
+    res.json(profile);
+
+  }catch (err){
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+})
 
 
 

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
-const { check, validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
@@ -32,8 +32,8 @@ router.get('/me', auth, async (req, res) => {
 router.post('/',
 [auth, 
     [
-    check('franchise', 'franchise is required').not().isEmpty(),
-    check('admin', 'Admin is required').not().isEmpty()
+    body('franchise', 'franchise is required').not().isEmpty(),
+    body('admin', 'Admin is required').not().isEmpty()
 ] ],
 async (req, res) => {
   const errors = validationResult(req);
@@ -43,38 +43,28 @@ async (req, res) => {
   const {
       
       franchise,
-      jobtitle,
+      market,
       location,
-      salesgoal,
-      myaccounts,
-      district,
-      districtmgr,
-      region,
-      regionmgr,
+      ranking,
+      admin,
       contact,
-      admin
+      district,
+      region
 
   } = req.body;
 
   // Profile object
   const profileFields = {};
  profileFields.user = req.user.id;
- if(admin) profileFields.admin = admin;
  if(franchise) profileFields.franchise = franchise;
- if(jobtitle) profileFields.jobtitle = jobtitle;
+ if(market) profileFields.market = market;
  if(location) profileFields.location = location;
- if(salesgoal) profileFields.salesgoal = salesgoal;
- if(myaccounts) {
-     profileFields.myaccounts = myaccounts.split(',').map(myaccounts => myaccounts.trim());
- }
+ if(ranking) profileFields.ranking = ranking;
+ if(admin) profileFields.admin = admin;
+ if(contact) profileFields.contact = contact;
+ if(district) profileFields.district = district;
+ if(region) profileFields.region = region;
 
- profileFields.local = {};
-
- if(district) profileFields.local.district = district;
- if(districtmgr) profileFields.local.districtmgr = districtmgr;
- if(region) profileFields.local.region = region;
- if(regionmgr) profileFields.local.regionmgr = regionmgr;
- if(contact) profileFields.local.contact = contact;
 
 try{
     let profile = await Profile.findOne({ user: req.user.id });
@@ -150,15 +140,11 @@ router.delete('/', auth, async (req, res) => {
 });
 
 
-// @route    PUT api/profile/complan
+// @route    PUT api/profile/curweeklob
 // @desc     Add profile compensation plan
 // @access   Private
 
-router.put('/complan', [auth, [
-  check('title', 'Title is required').not().isEmpty(),
-  check('type', 'Type is required').not().isEmpty(),
-  check('reportsto', 'Reports to manager is required').not().isEmpty()
-]], async (req, res) => {
+router.put('/curweeklob', [auth], async (req, res) => {
   const errors = validationResult(req)
 
   if(!errors.isEmpty()){
@@ -167,37 +153,43 @@ router.put('/complan', [auth, [
   }
 
   const {
-    title,
-    type,
-    reportsto,
-    basesalary,
-    salesincentive,
-    ontargetearn,
-    revenue,
-    avgcontract,
-    compensationvar,
-    lifecycle,
-    tierlevel
+    upsrev,
+    upsmgndol,
+    upsmgnpct,
+    dhlrev,
+    dhlmgndol,
+    dhlmgnpct,
+    ltlrev,
+    ltlmgndol,
+    ltlmgnpct,
+    totalrev,
+    totalmgndol,
+    totalmgnpct,
+    from,
+    to
   } = req.body;
 
-  const newComp = {
-    title,
-    type,
-    reportsto,
-    basesalary,
-    salesincentive,
-    ontargetearn,
-    revenue,
-    avgcontract,
-    compensationvar,
-    lifecycle,
-    tierlevel
+  const newCurlob = {
+    upsrev,
+    upsmgndol,
+    upsmgnpct,
+    dhlrev,
+    dhlmgndol,
+    dhlmgnpct,
+    ltlrev,
+    ltlmgndol,
+    ltlmgnpct,
+    totalrev,
+    totalmgndol,
+    totalmgnpct,
+    from,
+    to
   }
 
   try {
     const profile = await Profile.findOne({ user: req.user.id });
 
-    profile.complan.unshift(newComp);
+    profile.curweeklob.unshift(newCurlob);
     await profile.save()
     res.json(profile);
   } catch(err) {
@@ -207,20 +199,20 @@ router.put('/complan', [auth, [
 
 })
 
-// @route    DELETE api/profile/complan/:comp_id
+// @route    DELETE api/profile/curweeklob/:lob_id
 // @desc     Delete profile compensation plan
 // @access   Private
 
-router.delete('/complan/:comp_id', auth, async (req, res) => {
+router.delete('/curweeklob/:lob_id', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id });
 
     //Get remove index
-    const removeIndex = profile.complan
+    const removeIndex = profile.curweeklob
     .map(item => item.id)
-    .indexOf(req.params.comp_id);
+    .indexOf(req.params.lob_id);
 
-    profile.complan.splice(removeIndex, 1);
+    profile.curweeklob.splice(removeIndex, 1);
 
     await profile.save();
 
@@ -234,15 +226,11 @@ router.delete('/complan/:comp_id', auth, async (req, res) => {
 
 //================
 
-// @route    PUT api/profile/metrics
+// @route    PUT api/profile/ytdlobmgn
 // @desc     Add profile metric numbers
 // @access   Private
 
-router.put('/metrics', [auth, [
-  check('model', 'Model name is required').not().isEmpty(),
-  check('revenue', 'Revenue amount is required').not().isEmpty(),
-  check('margin', 'Margin amount is required').not().isEmpty()
-]], async (req, res) => {
+router.put('/ytdlobmgn', [auth], async (req, res) => {
   const errors = validationResult(req)
 
   if(!errors.isEmpty()){
@@ -251,29 +239,58 @@ router.put('/metrics', [auth, [
   }
 
   const {
-    model,
-    revenue,
-    margin,
-    cost,
-    average,
-    from,
-    to
+    year,
+    upsytdrev,
+    upsytdmgndol,
+    upsytdmgnpct,
+    dhlytdrev,
+    dhlytdmgndol,
+    dhlytdmgnpct,
+    ltlytdrev,
+    ltlytdmgndol,
+    ltlytdmgnpct,
+    totalytdrev,
+    totalytdmgndol,
+    totalytdmgnpct
   } = req.body;
 
-  const newMetric = {
-    model,
-    revenue,
-    margin,
-    cost,
-    average,
-    from,
-    to
+  // const newLob = {};
+  // if(year) newLob.year = year;
+  // if(upsytdrev) newLob.upsytdrev = upsytdrev;
+  // if(upsytdmgndol) newLob.upsytdmgndol = upsytdmgndol;
+  // if(upsytdmgnpct) newLob.upsytdmgnpct = upsytdmgnpct;
+  // if(dhlytdrev) newLob.dhlytdrev = dhlytdrev;
+  // if(dhlytdmgndol) newLob.dhlytdmgndol = dhlytdmgndol;
+  // if(dhlytdmgnpct) newLob.dhlytdmgnpct = dhlytdmgnpct;
+  // if(ltlytdrev) newLob.ltlytdrev = ltlytdrev;
+  // if(ltlytdmgndol) newLob.ltlytdmgndol = ltlytdmgndol;
+  // if(ltlytdmgnpct) newLob.ltlytdmgnpct = ltlytdmgnpct;
+  // if(totalytdrev) newLob.totalytdrev = totalytdrev;
+  // if(totalytdmgndol) newLob.totalytdmgndol = totalytdmgndol;
+  // if(totalytdmgnpct) newLob.totalytdmgnpct = totalytdmgnpct;
+
+  const newLob = {
+    year,
+    upsytdrev,
+    upsytdmgndol,
+    upsytdmgnpct,
+    dhlytdrev,
+    dhlytdmgndol,
+    dhlytdmgnpct,
+    ltlytdrev,
+    ltlytdmgndol,
+    ltlytdmgnpct,
+    totalytdrev,
+    totalytdmgndol,
+    totalytdmgnpct
   }
 
   try {
-    const profile = await Profile.findOne({ user: req.user.id });
+    let profile = await Profile.findOne({ user: req.user.id });
 
-    profile.metrics.unshift(newMetric);
+    profile.ytdlobmgn.unshift(newLob);
+ 
+
     await profile.save()
     res.json(profile);
   } catch(err) {
@@ -283,20 +300,98 @@ router.put('/metrics', [auth, [
 
 })
 
-// @route    DELETE api/profile/metrics/:metric_id
+// @route    DELETE api/profile/ytdlobmgn/:ytdlobmgn_id
 // @desc     Delete profile metrics plan
 // @access   Private
 
-router.delete('/metrics/:metric_id', auth, async (req, res) => {
+router.delete('/ytdlobmgn/:ytdlobmgn_id', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id });
 
     //Get remove index
-    const removeIndex = profile.metrics
+    const removeIndex = profile.ytdlobmgn
     .map(item => item.id)
-    .indexOf(req.params.metric_id);
+    .indexOf(req.params.ytdlobmgn_id);
 
-    profile.metrics.splice(removeIndex, 1);
+    profile.ytdlobmgn.splice(removeIndex, 1);
+
+    await profile.save();
+
+    res.json(profile);
+
+  }catch (err){
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+})
+//================
+
+// @route    PUT api/profile/ytdlobact
+// @desc     Add YTD LOB Activations
+// @access   Private
+
+router.put('/ytdlobact', [auth], async (req, res) => {
+  const errors = validationResult(req)
+
+  if(!errors.isEmpty()){
+    return res.status(400).json({ errors: errors.array() });
+
+  }
+
+  const {
+    year,
+    curwkupsact,
+    curwkdhlact,
+    curwkltlact,
+    curwktotalact,
+    ytdupsact,
+    ytddhlact,
+    ytdltlact,
+    ytdktotalact
+  } = req.body;
+
+  const newAct = {
+
+    year,
+    curwkupsact,
+    curwkdhlact,
+    curwkltlact,
+    curwktotalact,
+    ytdupsact,
+    ytddhlact,
+    ytdltlact,
+    ytdktotalact
+  }
+
+  try {
+    let profile = await Profile.findOne({ user: req.user.id });
+
+    profile.ytdlobact.unshift(newAct);
+ 
+
+    await profile.save()
+    res.json(profile);
+  } catch(err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+
+})
+
+// @route    DELETE api/profile/ytdlobmgn/:ytdlobmgn_id
+// @desc     Delete profile metrics plan
+// @access   Private
+
+router.delete('/ytdlobact/:ytdlobact_id', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    //Get remove index
+    const removeIndex = profile.ytdlobact
+    .map(item => item.id)
+    .indexOf(req.params.ytdlobact_id);
+
+    profile.ytdlobact.splice(removeIndex, 1);
 
     await profile.save();
 

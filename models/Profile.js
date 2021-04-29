@@ -15,78 +15,58 @@ const ProfileSchema = new mongoose.Schema({
   location: {
     type: String
   },
+  ranking: {
+    type: Number
+  },
   admin: {
     type: String,
     required: true
   },
-  myaccounts: {
-    type: [String]
+  contact: {
+    type: String
   },
-  salesgoal: {
-    type: Number
+  district: {
+    type: String
   },
-  complanpay: {
-    type: Number
+  region: {
+    type: String
   },
-  complan: [
+  curweeklob: [
     {
-      title: {
-        type: String,
-        required: true
-      },
-      type: {
-        type: String,
-        required: true
-      },
-      reportsto: {
-        type: String,
-        required: true
-      },
-      basesalary: {
+      upsrev: {
         type: Number
       },
-      salesincentive: {
+      upsmgndol: {
         type: Number
       },
-      ontargetearn: {
+      upsmgnpct: {
         type: Number
       },
-      revenue: {
+      dhlrev: {
         type: Number
       },
-      avgcontract: {
+      dhlmgndol: {
         type: Number
       },
-      compensationvar: {
-        type: String
-      },
-      lifecycle: {
-        type: String
-      },
-      tierlevel: {
-        type: String
-      }
-
-    }
-  ],
-  metrics: [
-    {
-      model: {
-        type: String,
-        required: true
-      },
-      revenue: {
-        type: Number,
-        required: true
-      },
-      margin: {
-        type: Number,
-        required: true
-      },
-      cost: {
+      dhlmgnpct: {
         type: Number
       },
-      average: {
+      ltlrev: {
+        type: Number
+      },
+      ltlmgndol: {
+        type: Number
+      },
+      ltlmgnpct: {
+        type: Number
+      },
+      totalrev: {
+        type: Number
+      },
+      totalmgndol: {
+        type: Number
+      },
+      totalmgnpct: {
         type: Number
       },
       from: {
@@ -95,25 +75,84 @@ const ProfileSchema = new mongoose.Schema({
       to: {
         type: Date
       }
+
     }
   ],
-  local: {
-    district: {
-      type: String
-    },
-    districtmgr: {
-      type: String
-    },
-    region: {
-      type: String
-    },
-    regionmgr: {
-      type: String
-    },
-    contact: {
-      type: String
+  ytdlobmgn: [
+    {
+      year: {
+        type: String,
+        required: true
+      },
+      upsytdrev: {
+        type: Number
+      },
+      upsytdmgndol: {
+        type: Number
+      },
+      upsytdmgnpct: {
+        type: Number
+      },
+      dhlytdrev: {
+        type: Number
+      },
+      dhlytdmgndol: {
+        type: Number
+      },
+      dhlytdmgnpct: {
+        type: Number
+      },
+      ltlytdrev: {
+        type: Number
+      },
+      ltlytdmgndol: {
+        type: Number
+      },
+      ltlytdmgnpct: {
+        type: Number
+      },
+      totalytdrev: {
+        type: Number
+      },
+      totalytdmgndol: {
+        type: Number
+      },
+      totalytdmgnpct: {
+        type: Number
+      },
     }
-  },
+  ],
+  ytdlobact: [
+  {
+    year: {
+      type: String
+    },
+    curwkupsact: {
+      type: Number
+    },
+    curwkdhlact: {
+      type: Number
+    },
+    curwkltlact: {
+      type: Number
+    },
+    curwktotalact: {
+      type: Number
+    },
+    ytdupsact: {
+      type: Number
+    },
+    ytddhlact: {
+      type: Number
+    },
+    ytdltlact: {
+      type: Number
+    },
+    ytdktotalact: {
+      type: Number
+    }
+  }
+],
   date: {
     type: Date,
     default: Date.now

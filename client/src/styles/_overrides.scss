@@ -1,0 +1,31 @@
+.nav-item {
+  .nav-link {
+    display: flex;
+    align-items: center;
+
+    &.active {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.23);
+      opacity: 1;
+    }
+  }
+}
+
+.sidebar .nav a {
+  transition: all 150ms ease-in;
+}
+
+.card-header {
+  text-transform: uppercase;
+}
+
+.badge:empty {
+  display: inline-block;
+}
+.btn-secondary {
+  border-color: rgb(246, 2, 2);
+  border-width: 2px;
+}
+.cr-widget__icon.card-body {
+  padding: 3rem 0rem 3rem 2rem;
+}

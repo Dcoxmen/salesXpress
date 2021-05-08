@@ -1,7 +1,4 @@
-import bg11Image from 'assets/img/bg/background_1920-11.jpg';
-import bg18Image from 'assets/img/bg/background_1920-18.jpg';
-import bg1Image from 'assets/img/bg/background_640-1.jpg';
-import bg3Image from 'assets/img/bg/background_640-3.jpg';
+
 import Page from 'components/Page';
 import { bgCards, gradientCards } from 'demos/docPage';
 import React from 'react';
@@ -10,14 +7,11 @@ import {
   Button,
   Card,
   CardBody,
-  CardImg,
-  CardImgOverlay,
-  CardLink,
+
   CardText,
   CardTitle,
   Col,
-  ListGroup,
-  ListGroupItem,
+
   Row,
 } from 'reactstrap';
 

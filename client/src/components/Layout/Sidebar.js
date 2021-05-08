@@ -10,14 +10,14 @@ import {
   MdBrush,
   MdChromeReaderMode,
   MdDashboard,
-  MdExtension,
+
   MdGroupWork,
   MdInsertChart,
   MdKeyboardArrowDown,
   MdNotificationsActive,
   MdPages,
   MdRadioButtonChecked,
-  MdSend,
+
   MdStar,
   MdTextFields,
   MdViewCarousel,
@@ -80,6 +80,7 @@ const pageContents = [
     exact: false,
     Icon: MdViewCarousel,
   },
+  { to: '/uploads', name: 'Doc Uploads', exact: false, Icon: MdAccountCircle },
 ];
 
 const navItems = [

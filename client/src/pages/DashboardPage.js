@@ -1,15 +1,13 @@
-import bg1Image from 'assets/img/bg/background_640-1.jpg';
+
 import { AnnouncementCard, TodosCard } from 'components/Card';
-import HorizontalAvatarList from 'components/HorizontalAvatarList';
 import MapWithBubbles from 'components/MapWithBubbles';
 import Page from 'components/Page';
 import ProductMedia from 'components/ProductMedia';
 import SupportTicket from 'components/SupportTicket';
 import UserProgressTable from 'components/UserProgressTable';
 import { IconWidget, NumberWidget } from 'components/Widget';
-import { getStackLineChart, stackLineChartOptions } from 'demos/chartjs';
+
 import {
-  avatarsData,
   chartjs,
   productsData,
   supportTicketsData,
@@ -19,14 +17,7 @@ import {
 import React from 'react';
 import { HorizontalBar, Line } from 'react-chartjs-2';
 import {
-  MdBubbleChart,
-  MdInsertChart,
   MdPersonPin,
-  MdPieChart,
-  MdRateReview,
-  MdShare,
-  MdShowChart,
-  MdThumbUp,
   MdHeadset
 } from 'react-icons/md';
 import {
@@ -35,21 +26,15 @@ import {
 }from 'react-icons/fa'
 import InfiniteCalendar from 'react-infinite-calendar';
 import {
-  Badge,
   Button,
   Card,
   CardBody,
-  CardDeck,
   CardGroup,
   CardHeader,
-  CardImg,
   CardTitle,
   CardText,
   Col,
-  ListGroup,
-  ListGroupItem,
   Row,
-  Table,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { getColor } from 'utils/colors';

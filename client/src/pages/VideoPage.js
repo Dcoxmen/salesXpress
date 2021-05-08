@@ -7,17 +7,16 @@ import ProductMedia from 'components/ProductMedia';
 import React from 'react';
 
 import {
-  Button,
+
   Card,
   CardBody,
   CardImg,
   CardHeader,
-  CardLink,
+
   CardText,
   CardTitle,
   Col,
-  ListGroup,
-  ListGroupItem,
+
   Row,
 } from 'reactstrap';
 

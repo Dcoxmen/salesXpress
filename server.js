@@ -9,7 +9,7 @@ const app = express();
 //Connect DB
 connectDB();
 
-//Init Middleware
+//Init Middleware to use req.body from body parser
 app.use(express.json({ extended: false }))
 
 //Index Route
@@ -34,7 +34,7 @@ app.post('/uploads', (req, res) => {
   
     const file = req.files.file;
   
-    file.mv(`${__dirname}/client/public/uploads/${file.name}`, err => {
+    file.mv(`${__dirname}/client/src/views/pdf/uploads/${file.name}`, err => {
       if (err) {
         console.error(err);
         return res.status(500).send(err);

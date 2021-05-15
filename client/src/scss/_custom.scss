@@ -1,0 +1,14 @@
+// Here you can add other styles
+.ml-2,
+.mx-2 {
+  margin-left: 2.2rem !important;
+}
+#table-title {
+  display: none;
+}
+@include media-breakpoint-up(sm) {
+  #table-title {
+    display: block;
+    padding-bottom: 0.7rem;
+  }
+}

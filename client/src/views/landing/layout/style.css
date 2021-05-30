@@ -1,0 +1,15 @@
+.landing {
+  position: relative;
+  background: url("showcase.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  margin-top: -24px;
+  margin-bottom: -50px;
+}
+
+.landing-inner {
+  padding-top: 20%;
+  text-align: center;
+  color: #32a852;
+}

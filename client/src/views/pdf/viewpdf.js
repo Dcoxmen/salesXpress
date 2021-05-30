@@ -1,12 +1,10 @@
 import React from 'react'
 import {
-  CBadge,
   CCard,
   CCardBody,
   CCardHeader,
   CCol,
-  CDataTable,
-  CRow
+  CDataTable
 } from '@coreui/react'
 import SinglePagePDFViewer from "./single-page";
 import dummy1 from "./uploads/cheatsheet1.pdf";

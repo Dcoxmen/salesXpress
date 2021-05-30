@@ -1,4 +1,5 @@
 import React from 'react'
+
 import {
   TheContent,
   TheSidebar,
@@ -15,6 +16,7 @@ const TheLayout = () => {
         <TheHeader/>
         <div className="c-body">
           <TheContent/>
+         
         </div>
         <TheFooter/>
       </div>

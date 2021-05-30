@@ -11,13 +11,19 @@ const _nav =  [
   },
   {
     _tag: 'CSidebarNavTitle',
-    _children: ['My Franchise']
+    _children: ['My Toolkit']
   },
 
   {
     _tag: 'CSidebarNavItem',
     name: 'Typography',
     to: '/theme/typography',
+    icon: 'cil-pencil',
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Uploads',
+    to: '/uploads',
     icon: 'cil-pencil',
   },
   {
@@ -109,6 +115,44 @@ const _nav =  [
         _tag: 'CSidebarNavItem',
         name: 'Tooltips',
         to: '/base/tooltips',
+      },
+    ],
+  },
+ 
+  {
+    _tag: 'CSidebarNavDivider'
+  },
+  {
+    _tag: 'CSidebarNavTitle',
+    _children: ['Template Tools'],
+  },
+
+
+  {
+    _tag: 'CSidebarNavDropdown',
+    name: 'Pages',
+    route: '/pages',
+    icon: 'cil-star',
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Login',
+        to: '/login',
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Register',
+        to: '/register',
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Error 404',
+        to: '/404',
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Error 500',
+        to: '/500',
       },
     ],
   },
@@ -206,54 +250,6 @@ const _nav =  [
     name: 'Widgets',
     to: '/widgets',
     icon: 'cil-calculator',
-  },
-  {
-    _tag: 'CSidebarNavDivider'
-  },
-  {
-    _tag: 'CSidebarNavTitle',
-    _children: ['Extras'],
-  },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'DocViewer',
-    to: '/viewpdf',
-    icon: 'cil-drop',
-  },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'DocUpload',
-    to: '/uploads',
-    icon: 'cil-pencil',
-  },
-
-  {
-    _tag: 'CSidebarNavDropdown',
-    name: 'Pages',
-    route: '/pages',
-    icon: 'cil-star',
-    _children: [
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Login',
-        to: '/login',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Register',
-        to: '/register',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Error 404',
-        to: '/404',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Error 500',
-        to: '/500',
-      },
-    ],
   },
   {
     _tag: 'CSidebarNavItem',

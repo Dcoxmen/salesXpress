@@ -1,4 +1,7 @@
 import React, { Suspense } from 'react'
+
+
+
 import {
   Redirect,
   Route,
@@ -35,7 +38,7 @@ const TheContent = () => {
                   )} />
               )
             })}
-            <Redirect from="/" to="/dashboard" />
+            <Redirect from="/" to="/landing" />
           </Switch>
         </Suspense>
       </CContainer>

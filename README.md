@@ -1,6 +1,8 @@
 # SalesXpress Backend API Specifications
 
-Created the backend for a salesXpress sales portal website. The frontend/UI will be created with React. The html/css template has been created and can be used as a reference for functionality. All of the functionality below needs to be fully implmented in this project.
+Created this application for a salesXpress sales portal website. The frontend/UI will be created with ReactJS and Redux for state management. We have implemented an admin dashboard template using coreui reactJS free template and have customized it to our needs.
+The dashboard and navigation are the main features at entry after being authenticated. The goal of this app is to centralize sales data and goals to track progress and achievements. To organize company culture and distribution of common documentations. Promote sales campaigns, contests, and rewards. Provide customized set of field applications for sales execs.
+All of the functionality below needs to be fully implmented in this project.
 
 ### Sales Person View (User info display)
 
@@ -26,21 +28,6 @@ Created the backend for a salesXpress sales portal website. The frontend/UI will
   - Upload PDF and description to MongoDB
   - View PDF documents in library with pagination
   - Delete PDF document by id
-
-### District Sales information
-
-- List all sales for users district by office
-- List all users in district
-  - Pagination, filtering, etc
-- Get single user sales in a district
-- Create new district
-  - Authenticated admin only
-  - Must have the role "admin"
-  - Only admin can create a district for a sales account
-- Update district
-  - admin only
-- Delete district
-  - admin only
 
 ### Regional Sales Info
 

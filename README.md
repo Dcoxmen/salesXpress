@@ -1,6 +1,6 @@
 # SalesXpress Backend API Specifications
 
-Create the backend for a salesXpress sales portal website. The frontend/UI will be created with Handlesbars initially. The html/css template has been created and can be used as a reference for functionality. All of the functionality below needs to be fully implmented in this project.
+Created the backend for a salesXpress sales portal website. The frontend/UI will be created with React. The html/css template has been created and can be used as a reference for functionality. All of the functionality below needs to be fully implmented in this project.
 
 ### Sales Person View (User info display)
 
@@ -19,8 +19,13 @@ Create the backend for a salesXpress sales portal website. The frontend/UI will 
   - Validation on update
 - Delete sales account
   - Admin only
-- Calculate the average total of all commissons for a current weeks accounts for this user
-- Calculate the average sales account for the week.
+- Commission Tracker
+  - Calculate the average total of all commissons for a current weeks accounts for this user
+  - Calculate the average sales account for the week.
+- PDF Document Library
+  - Upload PDF and description to MongoDB
+  - View PDF documents in library with pagination
+  - Delete PDF document by id
 
 ### District Sales information
 
@@ -96,7 +101,7 @@ Create the backend for a salesXpress sales portal website. The frontend/UI will 
 - Use docgen to create HTML files from Postman
 - Add html files as the / route for the api
 
-## Deployment (Digital Ocean)
+## Deployment (AWS)
 
 - Push to Github
 - Create a droplet - https://m.do.co/c/5424d440c63a
@@ -117,3 +122,10 @@ Create the backend for a salesXpress sales portal website. The frontend/UI will 
 - Validation using Mongoose and no external libraries
 - Use async/await (create middleware to clean up controller methods)
 - Create a database seeder to import and destroy data
+
+### Front-End Specifications (User info display)
+
+- ReactJS coreUI template implementation.
+- Redux state management (jwt, admin, etc)
+- Connect and display backend data
+- Form validation and security

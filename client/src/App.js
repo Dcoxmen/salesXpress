@@ -3,9 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import './scss/style.scss';
 
-//Redux
-import { Provider } from 'react-redux'
-import store from './store'
+
 
 
 const loading = (
@@ -34,7 +32,7 @@ class App extends Component {
 
   render() {
     return (
-      <Provider store={store}>
+      
       <BrowserRouter>
           <React.Suspense fallback={loading}>
             <Switch>
@@ -50,7 +48,7 @@ class App extends Component {
             </Switch>
           </React.Suspense>
       </BrowserRouter>
-      </Provider>
+     
     );
   }
 }

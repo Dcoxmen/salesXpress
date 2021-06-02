@@ -4,6 +4,46 @@ Created this application for a salesXpress sales portal website. The frontend/UI
 The dashboard and navigation are the main features at entry after being authenticated. The goal of this app is to centralize sales data and goals to track progress and achievements. To organize company culture and distribution of common documentations. Promote sales campaigns, contests, and rewards. Provide customized set of field applications for sales execs.
 All of the functionality below needs to be fully implmented in this project.
 
+### Technology Used
+
+- BackEnd Tech.
+  -MongoDB,
+  -express,
+  -bcryptjs,
+  -config,
+  -express,
+  -express-validator,
+  -jsonwebtoken,
+  -mongoose,
+  -request
+
+- FrontEnd Tech. (coreui reactjs template assets and other packages)
+  -@coreui/chartjs,
+  -@coreui/coreui,
+  -@coreui/icons,
+  -@coreui/icons-react,
+  -@coreui/react,
+  -@coreui/react-chartjs,
+  -@coreui/utils,
+
+  -axios,
+  -classnames,
+  -core-js,
+  -enzyme,
+  -moment,
+  -prop-types,
+  -react,
+  -react-app-polyfill,
+  -react-dom,
+  -react-moment,
+  -react-redux,
+  -react-router-dom,
+  -redux,
+  -redux-devtools-extension,
+  -redux-thunk,
+  -sass,
+  -uuid
+
 ### Sales Person View (User info display)
 
 - List all sales accounts relative to logged in user.

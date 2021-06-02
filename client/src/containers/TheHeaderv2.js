@@ -1,5 +1,10 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { logout } from '../actions/auth'
+
+
 import {
   CHeader,
   CToggler,
@@ -23,7 +28,7 @@ import {
   TheHeaderDropdownTasks
 }  from './index'
 
-const TheHeader = () => {
+const TheHeader = ({ auth: {isAuthenticated, loading}, logout}) => {
   const dispatch = useDispatch()
   const sidebarShow = useSelector(state => state.sidebarShow)
 
@@ -36,6 +41,17 @@ const TheHeader = () => {
     const val = [false, 'responsive'].includes(sidebarShow) ? true : 'responsive'
     dispatch({type: 'set', sidebarShow: val})
   }
+  const authLinks = (
+    <ul>
+
+      <li>
+        <a onClick={logout} href="#!">
+          <i className="fas fa-sign-out-alt" />{' '}
+          <span className="hide-sm">Logout</span>
+        </a>
+      </li>
+    </ul>
+  );
 
   return (
     <CHeader withSubheader>
@@ -61,7 +77,7 @@ const TheHeader = () => {
           <CHeaderNavLink to="/users">Users</CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/logout">Logout</CHeaderNavLink>
+          <CHeaderNavLink onClick={logout} to="/logout">Logout</CHeaderNavLink>
         </CHeaderNavItem>
       </CHeaderNav>
 
@@ -97,4 +113,13 @@ const TheHeader = () => {
   )
 }
 
-export default TheHeader
+TheHeader.propTypes = {
+    logout: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+}
+
+const mapStateToProps = state => ({
+    auth: state.auth
+})
+
+export default connect(mapStateToProps, { logout }) (TheHeader)

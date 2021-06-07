@@ -1,3 +1,7 @@
+# Product Business Model Overview
+
+![Image of Yaktocat](https://Dcoxmen.github.com/img/salesXpressBizModel.png)
+
 # SalesXpress Backend API Specifications
 
 Created this application for a salesXpress sales portal website. The frontend/UI will be created with ReactJS and Redux for state management. We have implemented an admin dashboard template using coreui reactJS free template and have customized it to our needs.

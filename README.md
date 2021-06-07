@@ -1,6 +1,6 @@
 # Product Business Model Overview
 
-![Image of Yaktocat](https://Dcoxmen.github.com/img/salesXpressBizModel.png)
+![Image of Yaktocat](./img/salesXpressBizModel.png)
 
 # SalesXpress Backend API Specifications
 
